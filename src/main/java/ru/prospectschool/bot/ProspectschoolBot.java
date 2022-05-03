@@ -21,16 +21,18 @@ public class ProspectschoolBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
-            SendMessage response = new SendMessage();
-            Long chatId = message.getChatId();
-            response.setChatId(String.valueOf(chatId));
-            String text = message.getText();
-            response.setText(text);
-            try {
-                execute(response);
-                //logger.info("Sent message \"{}\" to {}", text, chatId);
-            } catch (TelegramApiException e) {
-                //logger.error("Failed to send message \"{}\" to {} due to error: {}", text, chatId, e.getMessage());
+            if (message.hasText()) {
+                SendMessage response = SendMessage.builder()
+                        .chatId(message.getChatId().toString())
+                        .text(" -> " + message.getText())
+                        .build();
+                try {
+                    execute(response);
+                    //logger.info("Sent message \"{}\" to {}", text, chatId);
+                } catch (TelegramApiException e) {
+                    //logger.error("Failed to send message \"{}\" to {} due to error: {}", text, chatId, e.getMessage());
+                    e.printStackTrace();
+                }
             }
         }
     }
