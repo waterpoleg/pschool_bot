@@ -2,16 +2,26 @@ package ru.prospectschool.bot.model;
 
 public abstract class Employee {
 
+    private int id;
     private String firstName;
     private String lastName;
     private int age;
     private String bio;
 
-    public Employee(String firstName, String lastName, int age, String bio) {
+    public Employee(int id, String firstName, String lastName, int age, String bio) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.bio = bio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

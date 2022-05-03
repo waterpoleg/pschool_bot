@@ -6,9 +6,9 @@ public class Subject {
     private int pricePerHour;
     private SubjectType subjectType;
 
-    public Subject(String name, int price, SubjectType subjectType) {
+    public Subject(String name, int pricePerHour, SubjectType subjectType) {
         this.name = name;
-        this.pricePerHour = price;
+        this.pricePerHour = pricePerHour;
         this.subjectType = subjectType;
     }
 

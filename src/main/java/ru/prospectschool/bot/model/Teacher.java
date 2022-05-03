@@ -6,8 +6,8 @@ public class Teacher extends Employee {
 
     private List<Subject> subjects;
 
-    public Teacher(String firstName, String lastName, int age, String bio, List<Subject> subjects) {
-        super(firstName, lastName, age, bio);
+    public Teacher(int id, String firstName, String lastName, int age, String bio, List<Subject> subjects) {
+        super(id, firstName, lastName, age, bio);
         this.subjects = subjects;
     }
 
