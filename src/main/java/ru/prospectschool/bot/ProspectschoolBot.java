@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.prospectschool.bot.controller.IncomeMessageController;
 
 @Component
 public class ProspectschoolBot extends TelegramLongPollingBot {
@@ -17,15 +18,18 @@ public class ProspectschoolBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
 
+    private final IncomeMessageController incomeMessageController;
+
+    private ProspectschoolBot(IncomeMessageController incomeMessageController) {
+        this.incomeMessageController = incomeMessageController;
+    }
+
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
             if (message.hasText()) {
-                SendMessage response = SendMessage.builder()
-                        .chatId(message.getChatId().toString())
-                        .text(" -> " + message.getText())
-                        .build();
+                SendMessage response = incomeMessageController.getResponse(message);
                 try {
                     execute(response);
                     //logger.info("Sent message \"{}\" to {}", text, chatId);
