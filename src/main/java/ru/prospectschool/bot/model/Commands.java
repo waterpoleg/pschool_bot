@@ -4,5 +4,5 @@ public interface Commands {
     String INFO = "/info";
     String CONTACTS = "/contacts";
     String TEACHERS = "/teachers";
-    String PRICES = "/price";
+    String PRICES = "/prices";
 }
