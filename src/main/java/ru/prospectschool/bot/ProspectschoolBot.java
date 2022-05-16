@@ -20,7 +20,7 @@ public class ProspectschoolBot extends TelegramLongPollingBot {
 
     private final IncomeMessageController incomeMessageController;
 
-    private ProspectschoolBot(IncomeMessageController incomeMessageController) {
+    public ProspectschoolBot(IncomeMessageController incomeMessageController) {
         this.incomeMessageController = incomeMessageController;
     }
 
