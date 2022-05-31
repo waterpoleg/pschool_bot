@@ -20,7 +20,7 @@ public class IncomeMessageController {
         if (ce == null) {
             return SendMessage.builder()
                     .chatId(message.getChatId().toString())
-                    .text("unknown command")
+                    .text(responseMessage)
                     .build();
         }
 
