@@ -1,5 +1,6 @@
 package ru.prospectschool.bot;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -9,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.prospectschool.bot.controller.IncomeMessageController;
 
+@Slf4j
 @Component
 public class ProspectschoolBot extends TelegramLongPollingBot {
 
@@ -32,9 +34,10 @@ public class ProspectschoolBot extends TelegramLongPollingBot {
                 SendMessage response = incomeMessageController.getResponse(message);
                 try {
                     execute(response);
-                    //logger.info("Sent message \"{}\" to {}", text, chatId);
+                    log.info("Sent message \"{}\" to {}", message.getText(), message.getChatId());
                 } catch (TelegramApiException e) {
-                    //logger.error("Failed to send message \"{}\" to {} due to error: {}", text, chatId, e.getMessage());
+                    log.error("Failed to send message \"{}\" to {} due to error: {}",
+                            message.getText(), message.getChatId(), e.getMessage());
                     e.printStackTrace();
                 }
             }
